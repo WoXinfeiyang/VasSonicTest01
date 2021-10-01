@@ -89,6 +89,7 @@ public class MainActivity extends Activity {
 
         // init webview settings
         WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowContentAccess(true);
         webSettings.setDatabaseEnabled(true);
         webSettings.setDomStorageEnabled(true);
