@@ -43,14 +43,15 @@ public class MainActivity extends Activity {
 
         btnGo=findViewById(R.id.btn_go);
         etUrl=findViewById(R.id.et_url);
-        webView=findViewById(R.id.webView);
+
 
         // step 1: init sonic engine if necessary, or maybe u can do this when application created
         if (!SonicEngine.isGetInstanceAllowed()) {
             SonicEngine.createInstance(new SonicRuntimeImpl(getApplication()), new SonicConfig.Builder().build());
         }
 
-
+        long initWebViewTimeStart=System.currentTimeMillis();
+        webView=findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -96,6 +97,9 @@ public class MainActivity extends Activity {
         webSettings.setSaveFormData(false);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
+
+        long initWebViewTimeEnd=System.currentTimeMillis();
+        Log.d(TAG,"init WebView time cost="+(initWebViewTimeEnd-initWebViewTimeStart)+"ms,initWebViewTimeEnd="+initWebViewTimeEnd+",initWebViewTimeStart="+initWebViewTimeStart);
 
         this.btnGo.setOnClickListener(new View.OnClickListener(){
 
