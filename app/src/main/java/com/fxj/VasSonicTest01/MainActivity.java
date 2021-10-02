@@ -118,6 +118,9 @@ public class MainActivity extends Activity {
             Toast.makeText(MainActivity.this,"请检查输入url是否正确",Toast.LENGTH_LONG).show();
             return;
         }
+        if(sonicSession!=null){
+            sonicSession.destroy();
+        }
         sonicSession = SonicEngine.getInstance().createSession(url,  new SonicSessionConfig.Builder().build());
         sonicSessionClient = new SonicSessionClientImpl();
         Log.d(TAG,"##toLoadUrl##url="+url+",sonicSession="+sonicSession+",sonicSessionClient="+sonicSessionClient);
