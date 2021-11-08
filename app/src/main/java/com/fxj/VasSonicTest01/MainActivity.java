@@ -3,6 +3,7 @@ package com.fxj.VasSonicTest01;
 import android.annotation.TargetApi;
 import android.app.Activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.tencent.sonic.sdk.SonicConfig;
 import com.tencent.sonic.sdk.SonicEngine;
@@ -134,4 +137,25 @@ public class MainActivity extends Activity {
             Toast.makeText(MainActivity.this,"使用WebView加载H5页面,url="+url,Toast.LENGTH_LONG).show();
         }
     }
+
+
+    /*需要配合android:configChanges="orientation|screenSize"使用*/
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d(TAG,"##onConfigurationChanged##newConfig.orientation="+newConfig.orientation);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(TAG,"##onRestoreInstanceState##savedInstanceState="+savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG,"##onSaveInstanceState##outState="+outState);
+    }
+
 }
